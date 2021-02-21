@@ -1,3 +1,14 @@
+GIT
+  remote: https://github.com/heartcombo/devise.git
+  revision: 1bb5fcbbecfb9452e194341e030fdc1d364f6ee4
+  specs:
+    devise (4.7.3)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 4.1.0)
+      responders
+      warden (~> 1.2.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -62,6 +73,7 @@ GEM
       zeitwerk (~> 2.3)
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
+    bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.7.1)
       msgpack (~> 1.0)
@@ -82,6 +94,7 @@ GEM
     ffi (1.14.2)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    hashie (4.1.0)
     i18n (1.8.8)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.2)
@@ -99,12 +112,26 @@ GEM
     method_source (1.0.0)
     mimemagic (0.3.5)
     mini_mime (1.0.2)
+    mini_portile2 (2.5.0)
     minitest (5.14.3)
     msgpack (1.4.2)
     mysql2 (0.5.3)
     nio4r (2.5.4)
-    nokogiri (1.11.1-x86_64-linux)
+    nokogiri (1.11.1)
+      mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    oauth (0.5.5)
+    omniauth (2.0.2)
+      hashie (>= 3.4.6)
+      rack (>= 1.6.2, < 3)
+      rack-protection
+    omniauth-oauth (1.2.0)
+      oauth
+      omniauth (>= 1.0, < 3)
+    omniauth-twitter (1.4.0)
+      omniauth-oauth (~> 1.1)
+      rack
+    orm_adapter (0.5.0)
     public_suffix (4.0.6)
     puma (5.2.0)
       nio4r (~> 2.0)
@@ -112,6 +139,8 @@ GEM
     rack (2.2.3)
     rack-mini-profiler (2.3.1)
       rack (>= 1.2.0)
+    rack-protection (2.1.0)
+      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -147,6 +176,9 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     regexp_parser (2.0.3)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -177,6 +209,8 @@ GEM
     turbolinks-source (5.2.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (4.1.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -202,12 +236,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   byebug
   capybara (>= 3.26)
+  devise!
   jbuilder (~> 2.7)
   listen (~> 3.3)
   mysql2 (~> 0.5)
+  omniauth-twitter (~> 1.4)
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.1)
