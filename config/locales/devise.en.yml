@@ -9,10 +9,10 @@ en:
     failure:
       already_authenticated: "すでにログインしています。"
       inactive: "アカウントはまだ有効化されていません。"
-      invalid: "%{authentication_keys} または パスワードが空白です。"
+      invalid: "メールアドレスまたはパスワードが違います。"
       locked: "アカウントはロックされています。"
       last_attempt: "アカウントがロックされる前に、もう一度試行します。"
-      not_found_in_database: "%{authentication_keys} または パスワードが空白です。"
+      not_found_in_database: "メールアドレスまたはパスワードが違います。"
       timeout: "セッションが期限切れになりました。 続行するには、もう一度サインインしてください。"
       unauthenticated: "続行する前に、サインインまたはサインアップする必要があります。"
       unconfirmed: "続行する前に、メールアドレスを確認する必要があります。"
