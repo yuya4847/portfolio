@@ -24,6 +24,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise', git: "https://github.com/heartcombo/devise.git"
 gem 'omniauth-twitter', '~> 1.4'
 gem 'dotenv-rails'
+gem 'rails-i18n'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

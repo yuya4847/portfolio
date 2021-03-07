@@ -32,7 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
           :update_needs_confirmation : :updated
         set_flash_message :notice, flash_key
       end
-      sign_in resource_name, resource, :bypass => true
+      sign_in resource_name, resource, :bypass_sign_in => true
       respond_with resource, :location => after_update_path_for(resource)
     else
       clean_up_passwords resource
@@ -54,7 +54,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
-  # protected
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params
