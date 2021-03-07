@@ -76,9 +76,9 @@ RSpec.describe "Registrations", type: :system do
         expect(page).to have_selector 'textarea', class: 'profile_area'
         expect(page).to have_selector 'input', class: 'password_form'
         expect(page).to have_selector 'input', class: 'password_confirmation_form'
-        expect(page).to have_button 'Update'
-        expect(page).to have_button 'Cancel my account'
-        expect(page).to have_link 'Back'
+        expect(page).to have_button '編集完了'
+        expect(page).to have_button 'アカウントを削除したい方'
+        expect(page).to have_link '戻る'
       end
 
       it '適切なusernameだけ入力し編集完了できること' do
@@ -93,7 +93,7 @@ RSpec.describe "Registrations", type: :system do
         fill_in 'user_username', with: "edit_user"
         fill_in 'user_password', with: ""
         fill_in 'user_password_confirmation', with: ""
-        click_button 'Update'
+        click_button '編集完了'
         expect(current_path).to eq root_path
         expect(page).to have_content 'edit_user'
         expect(page).not_to have_content 'ようこそ'
@@ -114,7 +114,7 @@ RSpec.describe "Registrations", type: :system do
         fill_in 'user_username', with: "edit_user"
         fill_in 'user_password', with: "edit_password"
         fill_in 'user_password_confirmation', with: "edit_password"
-        click_button 'Update'
+        click_button '編集完了'
         expect(current_path).to eq root_path
         expect(page).not_to have_content 'edit_user'
         expect(page).to have_content 'ようこそ'
@@ -134,12 +134,42 @@ RSpec.describe "Registrations", type: :system do
         visit '/users/edit'
         fill_in 'user_username', with: "edit_user"
         fill_in 'user_email', with: "edituser@example.com"
-        click_button 'Update'
+        click_button '編集完了'
         expect(current_path).to eq root_path
         expect(page).to have_content 'edit_user'
         expect(page).not_to have_content 'ようこそ'
         within('.notice') do
           expect(page).to have_content 'アカウント情報を変更しました。変更されたメールアドレスの本人確認のため、本人確認用メールより確認処理をおこなってください。'
+        end
+      end
+    end
+
+    describe '#destroy' do
+      before do
+        @user = create(:user)
+      end
+
+      it 'ユーザーのアカウントを停止できること' do
+        visit '/users/sign_in'
+        fill_in 'user_email', with: @user.email
+        fill_in 'user_password', with: @user.password
+        click_button 'ログイン'
+        within('.notice') do
+          expect(page).to have_content 'ログインしました'
+        end
+        visit '/users/edit'
+        click_button 'アカウントを削除したい方'
+        expect(current_path).to eq root_path
+        expect(page).to have_content 'ようこそ'
+        within('.notice') do
+          expect(page).to have_content 'アカウントを削除しました。またのご利用をお待ちしております。'
+        end
+        visit '/users/sign_in'
+        fill_in 'user_email', with: @user.email
+        fill_in 'user_password', with: @user.password
+        click_button 'ログイン'
+        within('.alert') do
+          expect(page).to have_content 'メールアドレスまたはパスワードが違います。'
         end
       end
     end

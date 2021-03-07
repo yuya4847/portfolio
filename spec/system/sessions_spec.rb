@@ -136,7 +136,7 @@ RSpec.describe "Sessions", type: :system do
 
           visit '/users/edit'
           expect(current_path).to eq edit_user_registration_path
-          expect(page).to have_content 'Userを編集する'
+          expect(page).to have_content 'ユーザーを編集する'
 
           visit '/users/sign_in'
           expect(current_path).to eq root_path
