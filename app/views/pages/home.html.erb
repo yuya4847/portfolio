@@ -1,0 +1,14 @@
+<% if user_signed_in? %>
+  <div>
+    <%= @current_user.username %>
+  </div>
+  <div>
+    <%= @current_user.email %>
+  </div>
+  <div>
+    <%= @current_user.profile %>
+  </div>
+<% else %>
+  <h1>ようこそ</h1>
+  <p>トップページです。</p>
+<% end %>
