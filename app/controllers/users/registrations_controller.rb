@@ -24,12 +24,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
     self.resource = resource_class.to_adapter.get!(send(:"current_#{resource_name}").to_key)
     prev_unconfirmed_email = resource.unconfirmed_email if resource.respond_to?(:unconfirmed_email)
 
-    #if update_resource(resource, account_update_params)
+    # if update_resource(resource, account_update_params)
     if resource.update_without_current_password(account_update_params)
       yield resource if block_given?
       if is_flashing_format?
-        flash_key = update_needs_confirmation?(resource, prev_unconfirmed_email) ?
-          :update_needs_confirmation : :updated
+        flash_key =
+          if update_needs_confirmation?(resource, prev_unconfirmed_email)
+            :update_needs_confirmation
+          else
+            :updated
+          end
         set_flash_message :notice, flash_key
       end
       sign_in resource_name, resource, :bypass_sign_in => true
@@ -53,7 +57,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def cancel
   #   super
   # end
-
 
   # If you have extra params to permit, append them to the sanitizer.
   # def configure_sign_up_params

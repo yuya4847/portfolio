@@ -14,7 +14,8 @@ AllCops:
     - 'vendor/**/*'
     - 'path/ruby'
     - 'node_modules/**/*'
-    - 'spec/support/selenium_chrome.rb'
+    - 'spec/**/*'
+    - 'Gemfile'
 
 Metrics/LineLength:
   Max: 130

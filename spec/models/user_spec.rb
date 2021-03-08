@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-
   describe '#new' do
     it "username、email、passwordがある場合、有効であること" do
       user = FactoryBot.build(:user)
@@ -59,7 +58,7 @@ RSpec.describe User, type: :model do
     end
 
     it "emailが文字数を超える場合、無効であること" do
-      user = FactoryBot.build(:user, email: "yuya@example.com" + ( "a" * 300 ))
+      user = FactoryBot.build(:user, email: "yuya@example.com" + ("a" * 300))
       user.valid?
       expect(user.valid?).to eq(false)
       expect(user.errors[:email]).to include("は255文字以内で入力してください")
@@ -137,5 +136,4 @@ RSpec.describe User, type: :model do
       end.to change(User, :count).by(-1)
     end
   end
-
 end
